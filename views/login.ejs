@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/header') %>
+
+    <main class="main">
+        <form method="post" class="form">
+            <h3 class="login">Login</h3>
+
+            <label for="email" class="loginLabel">Email:</label>
+            <input type="email" name="email" id="email" class="loginInput">
+
+            <label for="password" class="loginLabel">Password:</label>
+            <input type="password" name="password" class="loginInput">
+
+            <button type="submit" class="loginButton">Login</button>
+
+            <p class="noAccount">Don't have an account? <a href="/sign-up" class="signUpLink">Sign Up</a></p>
+        </form>
+    </main>
+</body>
+</html>
