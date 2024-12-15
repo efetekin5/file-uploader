@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/header') %>
+
+    <main class="main">
+        <form method="post" class="signUpForm">
+            <h3 class="signUp">Sign Up</h3>
+
+            <label for="email" class="signUpLabel">Email:</label>
+            <input type="email" name="email" id="email" class="signUpInput">
+
+            <label for="password" class="signUpLabel">Password:</label>
+            <input type="password" name="password" class="signUpInput" id="password">
+
+            <label for="passwordConfirmation" class="signUpLabel">Confirm Password:</label>
+            <input type="password" name="passwordConfirmation" class="signUpInput" id="passwordConfirmation">
+
+            <button type="submit" class="signUpButton">Sign Up</button>
+        </form>
+    </main>
+</body>
+</html>
