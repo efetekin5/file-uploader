@@ -14,13 +14,28 @@
             <h3 class="signUp">Sign Up</h3>
 
             <label for="email" class="signUpLabel">Email:</label>
-            <input type="email" name="email" id="email" class="signUpInput">
+            <input type="email" name="email" id="email" class="signUpInput" value="<%= locals.email || '' %>" required>
+            <% if (locals.errors) { %>
+                <% if (errors.find(err => err.path === 'email')) { %>
+                <p class="signUpErrorText"><%= errors.find(err => err.path === 'email').msg %></p>
+                <% } %>
+            <% } %>
 
             <label for="password" class="signUpLabel">Password:</label>
-            <input type="password" name="password" class="signUpInput" id="password">
+            <input type="password" name="password" class="signUpInput" id="password" minlength="3" value="<%= locals.password || '' %>" required>
+            <% if (locals.errors) { %>
+                <% if (errors.find(err => err.path === 'password')) { %>
+                <p class="signUpErrorText"><%= errors.find(err => err.path === 'password').msg %></p>
+                <% } %>
+            <% } %>
 
             <label for="passwordConfirmation" class="signUpLabel">Confirm Password:</label>
-            <input type="password" name="passwordConfirmation" class="signUpInput" id="passwordConfirmation">
+            <input type="password" name="passwordConfirmation" class="signUpInput" id="passwordConfirmation" value="<%= locals.passwordConfirmation || '' %>" required>
+            <% if (locals.errors) { %>
+                <% if (errors.find(err => err.path === 'passwordConfirmation')) { %>
+                <p class="signUpErrorText"><%= errors.find(err => err.path === 'passwordConfirmation').msg %></p>
+                <% } %>
+            <% } %>
 
             <button type="submit" class="signUpButton">Sign Up</button>
         </form>
