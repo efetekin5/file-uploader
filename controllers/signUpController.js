@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const queries = require('../prisma/queries')
 
-exports.signUpGet = (req, res, next) => {
+const signUpGet = (req, res, next) => {
     res.render('sign-up');
 }
 
@@ -11,7 +11,16 @@ const userValidation = [
     body('email')
         .trim()
         .notEmpty().withMessage('Email field is required')
-        .isEmail().withMessage('Invalid email format'),
+        .isEmail().withMessage('Invalid email format')
+        .custom(async (value) => {
+            const user = await queries.getUserByEmail(value);
+      
+            if (user) {
+              throw new Error('Email is already taken');
+            }
+
+            return true;
+        }),
     body('password')
         .isLength({min: 3}).withMessage('Password must be at least 3 characters long'),
     body('passwordConfirmation').custom((value, {req}) => {
@@ -23,7 +32,7 @@ const userValidation = [
     }),
 ]
 
-exports.signUpPost = [
+const signUpPost = [
     userValidation,
     asyncHandler((req, res, next) => {
         const errors = validationResult(req);
@@ -55,3 +64,8 @@ exports.signUpPost = [
         }
     })
 ]
+
+module.exports = {
+    signUpGet,
+    signUpPost
+};
