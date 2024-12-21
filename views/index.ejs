@@ -9,8 +9,63 @@
 <body>
     <%- include('./partials/header') %>
 
-    <main>
-        <p>main</p>
+    <main class="mainLayout">
+        <div class="sidebar">
+            <button class="newFile">
+                <svg class="newFileIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                New File
+            </button>
+
+            <button class="newFolder">
+                <svg class="newFolderIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V11" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18 14V17M18 20V17M18 17H15M18 17H21" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                New Folder
+            </button>
+
+            <a class="home" href="/">
+                <svg class="homeIcon" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>home [#d3d3d3]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -720.000000)" fill="#d3d3d3"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M379.79996,578 L376.649968,578 L376.649968,574 L370.349983,574 L370.349983,578 L367.19999,578 L367.19999,568.813 L373.489475,562.823 L379.79996,568.832 L379.79996,578 Z M381.899955,568.004 L381.899955,568 L381.899955,568 L373.502075,560 L363,569.992 L364.481546,571.406 L365.099995,570.813 L365.099995,580 L372.449978,580 L372.449978,576 L374.549973,576 L374.549973,580 L381.899955,580 L381.899955,579.997 L381.899955,570.832 L382.514204,571.416 L384.001,570.002 L381.899955,568.004 Z" id="home-[#d3d3d3]"> </path> </g> </g> </g> </g></svg>
+                Home
+            </a>
+        </div>
+
+        <div class="dashboard">
+            <div class="gridHeader">
+                <div class="gridHeaderName">Name</div>
+                <div class="gridHeaderSize">Size</div>
+                <div class="gridHeaderCreated">Created</div>
+            </div>
+
+            <div class="grid">
+                <a class="gridItem">
+                    <div class="fileName">
+                        <svg class="fileNameIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        a.txt
+                    </div>
+
+                    <div class="fileSize">
+                        1.21 MB
+                    </div>
+
+                    <div class="fileCreatedAt">
+                        Nov 5, 2024
+                    </div>
+                </a>
+
+                <a class="gridItem">
+                    <div class="folderName">
+                        <svg class="folderNameIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="folder"> <path d="M2,18.8V5.3A2.3,2.3,0,0,1,4.3,3H9.6a1.1,1.1,0,0,1,.8.4l2.8,3.2a1.1,1.1,0,0,0,.8.4h5.6A2.2,2.2,0,0,1,22,9.2v9.7A2.2,2.2,0,0,1,19.8,21H4.2A2.2,2.2,0,0,1,2,18.8Z" fill="none" stroke="#d3d3d3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> </g> </g> </g></svg>
+                        abcdefg
+                    </div>
+
+                    <div class="fileSize">
+                        1.21 MB
+                    </div>
+
+                    <div class="fileCreatedAt">
+                        Nov 5, 2024
+                    </div>
+                </a>
+            </div>
+        </div>
     </main>
 </body>
 </html>
