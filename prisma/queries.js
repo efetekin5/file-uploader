@@ -7,7 +7,7 @@ const createNewUser = async (email, password) => {
             password: password
         }
     })
-}
+};
 
 const getUserByEmail = async (email) => {
     return await prisma.user.findUnique({
@@ -15,9 +15,32 @@ const getUserByEmail = async (email) => {
             email: email
         }
     })
-}
+};
+
+const createNewFolder = async(folderName, userId, parentId) => {
+    return await prisma.folder.create({
+        data: {
+            name: folderName,
+            userId: userId,
+            parentId: parentId
+        }
+    })
+};
+
+const getCurrentUser = async (userId) => {
+    return await prisma.user.findUnique({
+        where: {
+            id: userId
+        },
+        include: {
+            folders: true
+        }
+    })
+};
 
 module.exports = {
     createNewUser,
-    getUserByEmail
+    getUserByEmail,
+    createNewFolder,
+    getCurrentUser
 };

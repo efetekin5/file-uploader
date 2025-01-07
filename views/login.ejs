@@ -15,9 +15,15 @@
 
             <label for="email" class="loginLabel">Email:</label>
             <input type="email" name="email" id="email" class="loginInput">
+            <% if (errorMessage === 'Incorrect email') { %>
+                <p class="loginErrorText"><%= errorMessage %></p>
+            <% } %>
 
             <label for="password" class="loginLabel">Password:</label>
             <input type="password" name="password" class="loginInput" id="password">
+            <% if (errorMessage === 'Incorrect password') { %>
+                <p class="loginErrorText"><%= errorMessage %></p>
+            <% } %>
 
             <button type="submit" class="loginButton">Login</button>
 

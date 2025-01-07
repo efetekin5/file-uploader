@@ -16,7 +16,7 @@
                 New File
             </button>
 
-            <button class="newFolder">
+            <button class="newFolder" id="newFolder">
                 <svg class="newFolderIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V11" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18 14V17M18 20V17M18 17H15M18 17H21" stroke="#d3d3d3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 New Folder
             </button>
@@ -50,22 +50,53 @@
                     </div>
                 </a>
 
+                
+            <% folders.forEach(folder => { %>
                 <a class="gridItem">
                     <div class="folderName">
                         <svg class="folderNameIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="folder"> <path d="M2,18.8V5.3A2.3,2.3,0,0,1,4.3,3H9.6a1.1,1.1,0,0,1,.8.4l2.8,3.2a1.1,1.1,0,0,0,.8.4h5.6A2.2,2.2,0,0,1,22,9.2v9.7A2.2,2.2,0,0,1,19.8,21H4.2A2.2,2.2,0,0,1,2,18.8Z" fill="none" stroke="#d3d3d3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> </g> </g> </g></svg>
-                        abcdefg
+                        <%= folder.name %>
                     </div>
 
                     <div class="fileSize">
-                        1.21 MB
+                        -
                     </div>
 
                     <div class="fileCreatedAt">
-                        Nov 5, 2024
+                        <%= new Date(folder.createdAt).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        }) %>
                     </div>
                 </a>
+            <% }) %>
+                
             </div>
         </div>
     </main>
+
+
+    <div class="newFolderPopUp" id="newFolderPopUp">
+        <form method="post" action="/folders/create-new" class="newFolderForm">
+            <div class="newFolderFormHeader">
+                <h3 class="newFolderFormH3">New Folder</h3>
+                <svg class="xIcon" id="xIcon" fill="#787878" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 460.775 460.775" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"></path> </g></svg>
+            </div>
+            <label for="newFolderName">Name</label>
+            <p><%= locals.newFolderName %></p>
+            <input type="text" name="newFolderName" id="newFolderName" class="newFolderInput" value="<%= folderName ? folderName : '' %>" required>
+            <% if (locals.errors) { %>
+                <% if (errors.find(err => err.path === 'newFolderName')) { %>
+                    <p class="newFolderErrorText" id="newFolderErrorText"><%= errors.find(err => err.path === 'newFolderName').msg %></p>
+                <% } %>
+            <% } %>
+            <div class="buttonDiv">
+                <button type="submit" class="newFolderButton">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../script.js" defer></script>
 </body>
 </html>

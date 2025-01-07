@@ -135,7 +135,9 @@
     margin-left: 0.3rem;
 }
 
-.signUpErrorText {
+.signUpErrorText,
+.loginErrorText,
+.newFolderErrorText {
     font-family: "Poppins", sans-serif;
     font-size: 1.2rem;
     color: red;
@@ -216,7 +218,7 @@
 }
 
 .userIcon {
-    height: 40px;
+    height: 35px;
 }
 
 .gridHeader {
@@ -250,7 +252,7 @@
 .grid {
     display: flex;
     flex-direction: column;
-    row-gap: 0.9rem;
+    row-gap: 1rem;
 }
 
 .gridItem {
@@ -294,4 +296,84 @@
 .fileNameIcon,
 .folderNameIcon {
     height: 25px;
+}
+
+.newFolderPopUp {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0%;
+    background-color: #000000bd;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    display: flex;
+}
+
+.newFolderForm {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background-color: #23232C;
+    padding: 2rem;
+    row-gap: 0.7rem;
+    color: rgb(180, 180, 180);
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    border-radius: 0.3rem;
+}
+
+.newFolderInput {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 2.5rem;
+    outline: 3px #909db9 solid;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    margin-top: -0.3rem;
+}
+
+.newFolderButton {
+    color: rgb(180, 180, 180);
+    background-color: #121212;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    border: 3px #808080 solid;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 25%;
+    margin-top: 1rem;
+}
+
+.newFolderButton:hover {
+    background-color: rgb(0, 100, 139);
+    color: rgb(0, 247, 255);
+    border: 3px solid rgb(0, 247, 255);
+}
+
+.newFolderFormH3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.7rem;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.xIcon {
+    height: 50px;
+    width: 60px;
+    padding: 1rem;
+}
+
+.newFolderFormHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
 }

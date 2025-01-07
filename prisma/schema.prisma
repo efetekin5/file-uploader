@@ -23,6 +23,8 @@ model Folder {
   parentId Int?
   subFolders Folder[] @relation("folderHierarchy")
   files File[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model File {

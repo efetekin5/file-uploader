@@ -1,9 +1,19 @@
 const asyncHandler = require('express-async-handler');
+const dbQueries = require('../prisma/queries')
 
-exports.firstController = asyncHandler(async (req, res, next) => {
+const homePageGet = asyncHandler(async (req, res, next) => {
     if(req.user) {
-        res.render('index');
+        const currentUserInfo = await dbQueries.getCurrentUser(req.user.id)
+
+        res.render('index', {
+            folderName: null,
+            folders: currentUserInfo.folders
+        });
     } else {
         res.redirect('login');
     }
 })
+
+module.exports = {
+    homePageGet
+}

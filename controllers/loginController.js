@@ -1,12 +1,32 @@
 const passport = require('../config/passport');
 
-exports.loginGet = async (req, res, next) => {
-    res.render('login');
+const loginGet = async (req, res, next) => {
+    res.render('login', {
+      errorMessage: null
+    });
 };
 
-exports.loginPost = [
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-    }),
-];
+
+
+
+const loginPost = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+      if (err) {
+          return next(err);
+      }
+      if (!user) {
+          return res.render('login', { errorMessage: info.message });
+      }
+      req.logIn(user, (err) => {
+          if (err) {
+              return next(err);
+          }
+          return res.redirect('/');
+      });
+  })(req, res, next);
+};
+
+module.exports = {
+  loginGet,
+  loginPost
+}
