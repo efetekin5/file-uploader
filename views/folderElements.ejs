@@ -118,6 +118,7 @@
                     <p class="newFileErrorText" id="newFileErrorText"><%= errors.find(err => err.path === 'newFileInput').msg %></p>
                 <% } %>
             <% } %>
+            <input type="hidden" name="parentFolderId" value="<%= locals.parentFolderId %>">
             <div class="buttonDiv">
                 <button type="submit" class="newFileButton">Upload</button>
             </div>

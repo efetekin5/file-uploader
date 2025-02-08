@@ -17,8 +17,7 @@ const createFolder = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
         const folderName = req.body.newFolderName;
-        const parentId = parseInt(req.body.parentFolderId);
-        console.log(req)
+        const parentId = req.body.parentFolderId;
         
         if(!errors.isEmpty()) {
             res.render('index', {
@@ -26,8 +25,13 @@ const createFolder = [
                 folderName: folderName
             })
         } else {
-            await db.createNewFolder(folderName, req.user.id, parentId);
-            res.redirect(`/folders/${parentId}/view-folder`);
+            if(parentId === undefined) {
+                await db.createNewFolder(folderName, req.user.id, parentId);
+                res.redirect('/');
+            } else {
+                await db.createNewFolder(folderName, req.user.id, parseInt(parentId));
+                res.redirect(`/folders/${parentId}/view-folder`);
+            }
         }
     })
 ]

@@ -45,7 +45,8 @@ const homePageGet = asyncHandler(async (req, res, next) => {
         }))
 
         const rootFolders = currentUserInfo.folders.filter((folder) => folder.parentId === null)
-        const filesAndFolders = filesAndFoldersCombined(formattedFiles, rootFolders);
+        const rootFiles = formattedFiles.filter((file) => file.folderId === null);
+        const filesAndFolders = filesAndFoldersCombined(rootFiles, rootFolders);
         
         res.render('index', {
             folderName: null,
