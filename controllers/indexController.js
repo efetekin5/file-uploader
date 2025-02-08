@@ -1,13 +1,53 @@
 const asyncHandler = require('express-async-handler');
-const dbQueries = require('../prisma/queries')
+const db = require('../prisma/queries');
+
+function formattedFileSize(fileSize) {
+    let formattedFileSize = '';
+
+    if (fileSize < 1024) {
+        formattedFileSize = `${fileSize} bytes`;
+    } else if (fileSize < 1024 * 1024) {
+        formattedFileSize = `${(fileSize / 1024).toFixed(2)} KB`;
+    } else {
+        formattedFileSize = `${(fileSize / (1024 * 1024)).toFixed(2)} MB`;
+    }
+
+    return formattedFileSize;
+}
+
+function filesAndFoldersCombined(files, folders) {
+    const filesWithType = files.map(file => ({
+        ...file,
+        type: 'file',
+    }))
+
+    const foldersWithType = folders.map(folder => ({
+        ...folder,
+        type: 'folder',
+    })) 
+
+    const combinedArray = [...filesWithType, ...foldersWithType];
+
+    return combinedArray.sort((a, b) => {
+        const timeA = new Date(a.createdAt).getTime();
+        const timeB = new Date(b.createdAt).getTime();
+        return timeA - timeB;
+    })
+}
 
 const homePageGet = asyncHandler(async (req, res, next) => {
     if(req.user) {
-        const currentUserInfo = await dbQueries.getCurrentUser(req.user.id)
-
+        const currentUserInfo = await db.getCurrentUser(req.user.id)
+        const files = await db.getFiles(req.user.id);
+        const formattedFiles = files.map(file => ({
+            ...file,
+            size: formattedFileSize(file.size)
+        }))
+        const filesAndFolders = filesAndFoldersCombined(formattedFiles, currentUserInfo.folders);
+        
         res.render('index', {
             folderName: null,
-            folders: currentUserInfo.folders
+            filesAndFolders: filesAndFolders
         });
     } else {
         res.redirect('login');

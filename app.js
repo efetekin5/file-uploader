@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login');
 const signUpRouter = require('./routes/signUp');
 const logoutRouter = require('./routes/logout');
 const folderRouter = require('./routes/folder');
+const fileRouter = require('./routes/files');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/login', loginRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/logout', logoutRouter);
 app.use('/folders', folderRouter);
+app.use('/file', fileRouter);
 
 /*app.use((req, res, next) => {
   res.status(404).render('error', { message: 'Page not found!' });

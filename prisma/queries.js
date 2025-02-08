@@ -38,9 +38,31 @@ const getCurrentUser = async (userId) => {
     })
 };
 
+const uploadFileToDB = async (fileName, size, url, folderId, userId) => {
+    return await prisma.file.create({
+        data: {
+            name: fileName,
+            size: size,
+            url: url,
+            folderId: folderId,
+            userId: userId
+        }
+    })
+}
+
+const getFiles = async (userId) => {
+    return await prisma.file.findMany({
+        where: {
+            userId: userId
+        }
+    });
+}
+
 module.exports = {
     createNewUser,
     getUserByEmail,
     createNewFolder,
-    getCurrentUser
+    getCurrentUser,
+    uploadFileToDB,
+    getFiles
 };

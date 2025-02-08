@@ -36,6 +36,7 @@ model File {
   name String
   size Int
   url String
+  userId Int
 }
 
 model Session {
