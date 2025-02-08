@@ -1,12 +1,12 @@
-const xIcon = document.getElementById('xIcon');
-const newFolderPopUp = document.getElementById('newFolderPopUp');
-const newFolderButton = document.getElementById('newFolder');
-const newFolderErrorText = document.getElementById('newFolderErrorText');
-const newFilePopUp = document.getElementById('newFilePopUp');
-const newFileButton = document.getElementById('newFile');
-const newFileCloseButton = document.getElementById('newFileXIcon');
-const fileInput = document.getElementById('newFileInput');
-const fileNameSpan = document.getElementById('fileNameSpan');
+const xIcon = document.querySelector('.xIcon');
+const newFolderPopUp = document.querySelector('.newFolderPopUp');
+const newFolderButton = document.querySelector('.newFolder');
+const newFolderErrorText = document.querySelector('.newFolderErrorText');
+const newFilePopUp = document.querySelector('.newFilePopUp');
+const newFileButton = document.querySelector('.newFile');
+const newFileCloseButton = document.querySelector('.newFileXIcon');
+const fileInput = document.querySelector('.newFileInput');
+const fileNameSpan = document.querySelector('.fileNameSpan');
 
 function closeNewFolderForm() {
     newFolderPopUp.classList.remove('display');

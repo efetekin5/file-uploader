@@ -58,11 +58,24 @@ const getFiles = async (userId) => {
     });
 }
 
+const getFolder = async (folderId) => {
+    return await prisma.folder.findUnique({
+        where: {
+            id: folderId
+        },
+        include: {
+            subFolders: true,
+            files: true
+        }
+    })
+}
+
 module.exports = {
     createNewUser,
     getUserByEmail,
     createNewFolder,
     getCurrentUser,
     uploadFileToDB,
-    getFiles
+    getFiles,
+    getFolder
 };

@@ -43,11 +43,13 @@ const homePageGet = asyncHandler(async (req, res, next) => {
             ...file,
             size: formattedFileSize(file.size)
         }))
-        const filesAndFolders = filesAndFoldersCombined(formattedFiles, currentUserInfo.folders);
+
+        const rootFolders = currentUserInfo.folders.filter((folder) => folder.parentId === null)
+        const filesAndFolders = filesAndFoldersCombined(formattedFiles, rootFolders);
         
         res.render('index', {
             folderName: null,
-            filesAndFolders: filesAndFolders
+            filesAndFolders: filesAndFolders,
         });
     } else {
         res.redirect('login');
