@@ -86,6 +86,30 @@ const deleteFile = async (fileId) => {
     })
 }
 
+const deleteFolder = async (folderId) => {
+    return await prisma.folder.delete({
+        where: {
+            id: folderId
+        }
+    })
+}
+
+const deleteChildFiles = async (folderId) => {
+    return await prisma.file.deleteMany({
+        where: {
+            folderId: folderId
+        }
+    })
+}
+
+const deleteChildFolders = async (folderId) => {
+    return await prisma.folder.deleteMany({
+        where: {
+            parentId: folderId
+        }
+    })
+}
+
 module.exports = {
     createNewUser,
     getUserByEmail,
@@ -95,5 +119,8 @@ module.exports = {
     getFiles,
     getFolder,
     getFile,
-    deleteFile
+    deleteFile,
+    deleteFolder,
+    deleteChildFiles,
+    deleteChildFolders
 };

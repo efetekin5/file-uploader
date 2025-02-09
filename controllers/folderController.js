@@ -7,7 +7,6 @@ const folderNameValidation = [
         .notEmpty()
         .withMessage('Folder name is required')
         .trim()
-        .escape()
         .isLength({max: 30})
         .withMessage('Folder name can not be longer than 30 characters')
 ];
@@ -90,7 +89,23 @@ const viewChildElements = asyncHandler(async (req, res, next) => {
     })
 })
 
+const deleteFolder = asyncHandler(async (req, res, next) => {
+    const folderId = parseInt(req.params.folderId);
+    const folder = await db.getFolder(folderId);
+
+    await db.deleteChildFiles(folderId);
+    await db.deleteChildFolders(folderId);
+    await db.deleteFolder(folderId);
+
+    if(folder.parentId === null) {
+        res.redirect('/');
+    } else {
+        res.redirect(`/folders/${folder.parentId}/view-folder`);
+    }
+})
+
 module.exports = {
     createFolder,
-    viewChildElements
+    viewChildElements,
+    deleteFolder
 }

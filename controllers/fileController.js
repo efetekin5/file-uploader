@@ -54,6 +54,7 @@ const viewFileInfo = asyncHandler(async (req, res, next) => {
 const deleteFile = asyncHandler(async (req, res, next) => {
     const fileId = parseInt(req.params.fileId);
     const file = await db.getFile(fileId);
+    console.log(file)
 
     if(file.folderId === null) {
         await db.deleteFile(fileId);

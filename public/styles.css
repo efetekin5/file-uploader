@@ -379,7 +379,8 @@
 }
 
 .xIcon,
-.newFileXIcon {
+.newFileXIcon,
+.deleteIcon {
     height: 50px;
     width: 60px;
     padding: 1rem;
