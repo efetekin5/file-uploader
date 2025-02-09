@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/header') %>
+
+    <main class="mainLayout">
+        <div class="sidebar">
+            <a class="home" href="/">
+                <svg class="homeIcon" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#d3d3d3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>home [#d3d3d3]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -720.000000)" fill="#d3d3d3"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M379.79996,578 L376.649968,578 L376.649968,574 L370.349983,574 L370.349983,578 L367.19999,578 L367.19999,568.813 L373.489475,562.823 L379.79996,568.832 L379.79996,578 Z M381.899955,568.004 L381.899955,568 L381.899955,568 L373.502075,560 L363,569.992 L364.481546,571.406 L365.099995,570.813 L365.099995,580 L372.449978,580 L372.449978,576 L374.549973,576 L374.549973,580 L381.899955,580 L381.899955,579.997 L381.899955,570.832 L382.514204,571.416 L384.001,570.002 L381.899955,568.004 Z" id="home-[#d3d3d3]"> </path> </g> </g> </g> </g></svg>
+                Home
+            </a>
+        </div>
+
+        <div class="fileInfoContainer">
+            <h2 class="fileInfo">File Name: <%= locals.fileName %></h2>
+            <h2 class="fileInfo">File Size: <%= locals.fileSize %></h2>
+            <h2 class="fileInfo">File URL: <%= locals.fileURL %></h2>
+            <h2 class="fileInfo">
+                File Upload Date: <%= new Date(locals.fileCreatedAt).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                }) %>
+            </h2>
+            <h2 class="fileInfo">
+                File Last Updated: <%= new Date(locals.fileLastUpdated).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                }) %>
+            </h2>
+        </div>
+    </main>
+</body>
+</html>
