@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
+    <link href="/styles.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -17,12 +17,21 @@
             </a>
         </div>
 
-        <div class="fileInfoContainer">
-            <h2 class="fileInfo">File Name: <%= locals.fileName %></h2>
-            <h2 class="fileInfo">File Size: <%= locals.fileSize %></h2>
-            <h2 class="fileInfo">File URL: <%= locals.fileURL %></h2>
-            <h2 class="fileInfo">File Upload Date: <%= locals.fileCreatedAt %></h2>
-            <h2 class="fileInfo">File Last Updated: <%= locals.fileLastUpdated %></h2>
+        <div class="fileEditFormContainer">
+            <form method="post" class="fileEditForm">
+                <h3 class="editFile">Edit File</h3>
+    
+                <label for="fileName" class="editFileLabel">File Name:</label>
+                <input type="fileName" name="fileName" id="fileName" class="editFileInput" value="<%= locals.fileName %>">
+    
+                <label for="fileSize" class="editFileLabel">File Size:</label>
+                <input type="fileSize" name="fileSize" class="editFileInput" id="fileSize" value="<%= locals.fileSize %>">
+
+                <label for="fileCreatedAt" class="editFileLabel">File Upload Date:</label>
+                <input type="fileCreatedAt" name="fileCreatedAt" class="editFileInput" id="fileCreatedAt" value="<%= locals.fileCreatedAt %>">
+    
+                <button type="submit" class="fileEditButton">Save</button>
+            </form>
         </div>
     </main>
 </body>

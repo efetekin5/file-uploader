@@ -38,14 +38,16 @@ const getCurrentUser = async (userId) => {
     })
 };
 
-const uploadFileToDB = async (fileName, size, url, folderId, userId) => {
+const uploadFileToDB = async (fileName, size, url, folderId, userId, uploadDate, dateLastUpdated) => {
     return await prisma.file.create({
         data: {
             name: fileName,
             size: size,
             url: url,
             folderId: folderId,
-            userId: userId
+            userId: userId,
+            createdAt: uploadDate,
+            updatedAt: dateLastUpdated
         }
     })
 }
@@ -110,6 +112,20 @@ const deleteChildFolders = async (folderId) => {
     })
 }
 
+const editFile = async (fileId, fileName, fileSize, fileCreatedAt, fileLastUpdated) => {
+    return await prisma.file.update({
+        where: {
+            id: fileId
+        },
+        data: {
+            name: fileName,
+            size: fileSize,
+            createdAt: fileCreatedAt,
+            updatedAt: fileLastUpdated
+        }
+    })
+}
+
 module.exports = {
     createNewUser,
     getUserByEmail,
@@ -122,5 +138,6 @@ module.exports = {
     deleteFile,
     deleteFolder,
     deleteChildFiles,
-    deleteChildFolders
+    deleteChildFolders,
+    editFile
 };

@@ -1,23 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const db = require('../prisma/queries');
 
-const uploadFile = asyncHandler(async (req, res, next) => {
-    const fileName = req.file.originalname;
-    const fileSize = req.file.size;
-    const folderId = req.body.parentFolderId;
-    const fileURL = '.';
-    const currentUserId = req.user.id;
-
-    if(folderId === undefined) {
-        db.uploadFileToDB(fileName, fileSize, fileURL, folderId, currentUserId);
-        res.redirect('/');
-    } else {
-        db.uploadFileToDB(fileName, fileSize, fileURL, parseInt(folderId), currentUserId);
-        res.redirect(`/folders/${folderId}/view-folder`);
-    }
-})
-
-
 function formattedFileSize(fileSize) {
     let formattedFileSize = '';
 
@@ -32,6 +15,32 @@ function formattedFileSize(fileSize) {
     return formattedFileSize;
 }
 
+const uploadFile = asyncHandler(async (req, res, next) => {
+    const fileName = req.file.originalname;
+    const fileSize = formattedFileSize(req.file.size);
+    const folderId = req.body.parentFolderId;
+    const fileURL = '.';
+    const currentUserId = req.user.id;
+    const uploadDate = new Date(Date.now()).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    })
+    const dateLastUpdated = new Date(Date.now()).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    })
+
+    if(folderId === undefined) {
+        db.uploadFileToDB(fileName, fileSize, fileURL, folderId, currentUserId, uploadDate, dateLastUpdated);
+        res.redirect('/');
+    } else {
+        db.uploadFileToDB(fileName, fileSize, fileURL, parseInt(folderId), currentUserId);
+        res.redirect(`/folders/${folderId}/view-folder`);
+    }
+})
+
 const viewFileInfo = asyncHandler(async (req, res, next) => {
     const fileId = parseInt(req.params.fileId);
     const file = await db.getFile(fileId);
@@ -39,7 +48,7 @@ const viewFileInfo = asyncHandler(async (req, res, next) => {
     const fileCreatedAt = file.createdAt;
     const fileLastUpdated = file.updatedAt;
     const fileName = file.name;
-    const fileSize = formattedFileSize(file.size);
+    const fileSize = file.size;
     const fileURL = file.url;
 
     res.render('fileInfo', {
@@ -54,7 +63,6 @@ const viewFileInfo = asyncHandler(async (req, res, next) => {
 const deleteFile = asyncHandler(async (req, res, next) => {
     const fileId = parseInt(req.params.fileId);
     const file = await db.getFile(fileId);
-    console.log(file)
 
     if(file.folderId === null) {
         await db.deleteFile(fileId);
@@ -65,8 +73,47 @@ const deleteFile = asyncHandler(async (req, res, next) => {
     }
 })
 
+const editFileGet = asyncHandler(async (req, res, next) => {
+    const fileId = parseInt(req.params.fileId);
+    const file = await db.getFile(fileId);
+
+    const fileCreatedAt = file.createdAt;
+    const fileLastUpdated = file.updatedAt;
+    const fileName = file.name;
+    const fileSize = file.size;
+
+    res.render('editFile', {
+        fileCreatedAt: fileCreatedAt,
+        fileLastUpdated: fileLastUpdated,
+        fileName: fileName,
+        fileSize: fileSize
+    });
+})
+
+const editFilePost = asyncHandler(async (req, res, next) => {
+    const fileId = parseInt(req.params.fileId);
+    const file = await db.getFile(fileId)
+    const fileName = req.body.fileName;
+    const fileSize = req.body.fileSize;
+    const fileCreatedAt = req.body.fileCreatedAt;
+    const fileLastUpdated = new Date(Date.now()).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+
+    await db.editFile(fileId, fileName, fileSize, fileCreatedAt, fileLastUpdated);
+    if(file.folderId === null) {
+        res.redirect('/');
+    } else {
+        res.redirect(`/folders/${file.folderId}/view-folder`);
+    }
+})
+
 module.exports = {
     uploadFile,
     viewFileInfo,
-    deleteFile
+    deleteFile,
+    editFileGet,
+    editFilePost
 }

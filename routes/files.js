@@ -10,4 +10,8 @@ router.get('/:fileId/view-file', fileController.viewFileInfo);
 
 router.get('/:fileId/delete', fileController.deleteFile);
 
+router.get('/:fileId/edit', fileController.editFileGet);
+
+router.post('/:fileId/edit', fileController.editFilePost);
+
 module.exports = router;

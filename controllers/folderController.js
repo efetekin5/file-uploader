@@ -35,21 +35,6 @@ const createFolder = [
     })
 ]
 
-
-function formattedFileSize(fileSize) {
-    let formattedFileSize = '';
-
-    if (fileSize < 1024) {
-        formattedFileSize = `${fileSize} bytes`;
-    } else if (fileSize < 1024 * 1024) {
-        formattedFileSize = `${(fileSize / 1024).toFixed(2)} KB`;
-    } else {
-        formattedFileSize = `${(fileSize / (1024 * 1024)).toFixed(2)} MB`;
-    }
-
-    return formattedFileSize;
-}
-
 function filesAndFoldersCombined(files, folders) {
     const filesWithType = files.map(file => ({
         ...file,
@@ -76,11 +61,7 @@ const viewChildElements = asyncHandler(async (req, res, next) => {
     const files = parentFolder.files;
     const folders = parentFolder.subFolders;
 
-    const formattedFiles = files.map(file => ({
-        ...file,
-        size: formattedFileSize(file.size)
-    }))
-    const filesAndFolders = filesAndFoldersCombined(formattedFiles, folders);
+    const filesAndFolders = filesAndFoldersCombined(files, folders);
 
     res.render('folderElements', {
         filesAndFolders: filesAndFolders,
