@@ -79,7 +79,11 @@
                                 </div>
     
                                 <div class="fileCreatedAt">
-                                    <%= element.createdAt %>
+                                    <%= new Date(element.createdAt).toLocaleDateString('en-US', { 
+                                        year: 'numeric', 
+                                        month: 'long', 
+                                        day: 'numeric' 
+                                    }) %>
                                 </div>
                             </a>
 

@@ -85,8 +85,36 @@ const deleteFolder = asyncHandler(async (req, res, next) => {
     }
 })
 
+const editFolderGet = asyncHandler(async (req, res, next) => {
+    const folderId = parseInt(req.params.folderId);
+    const folder = await db.getFolder(folderId);
+
+    const folderName = folder.name;
+
+    res.render('editFolder', {
+        folderName: folderName
+    })
+})
+
+const editFolderPost = asyncHandler(async (req, res, next) => {
+    const folderId = parseInt(req.params.folderId);
+    const folder = await db.getFolder(folderId);
+
+    const newFolderName = req.body.folderName;
+
+    await db.editFolder(folderId, newFolderName);
+
+    if(folder.parentId === null) {
+        res.redirect('/');
+    } else {
+        res.redirect(`/folders/${folder.parentId}/view-folder`);
+    }
+})
+
 module.exports = {
     createFolder,
     viewChildElements,
-    deleteFolder
+    deleteFolder,
+    editFolderGet,
+    editFolderPost
 }
