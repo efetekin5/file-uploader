@@ -8,6 +8,8 @@ router.post('/upload', upload.single('uploadedFile'), fileController.uploadFile)
 
 router.get('/:fileId/view-file', fileController.viewFileInfo);
 
+router.post('/:fileId/view-file', fileController.downloadFile);
+
 router.get('/:fileId/delete', fileController.deleteFile);
 
 router.get('/:fileId/edit', fileController.editFileGet);

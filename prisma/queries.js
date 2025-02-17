@@ -38,14 +38,15 @@ const getCurrentUser = async (userId) => {
     })
 };
 
-const uploadFileToDB = async (fileName, size, url, folderId, userId) => {
+const uploadFileToDB = async (fileName, storedName, size, url, folderId, userId) => {
     return await prisma.file.create({
         data: {
             name: fileName,
             size: size,
             url: url,
             folderId: folderId,
-            userId: userId
+            userId: userId,
+            storedName: storedName
         }
     })
 }

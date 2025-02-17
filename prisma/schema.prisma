@@ -34,6 +34,7 @@ model File {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name String
+  storedName String
   size String
   url String
   userId Int

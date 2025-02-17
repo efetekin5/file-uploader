@@ -21,9 +21,23 @@
             <h2 class="fileInfo">File Name: <%= locals.fileName %></h2>
             <h2 class="fileInfo">File Size: <%= locals.fileSize %></h2>
             <h2 class="fileInfo">File URL: <%= locals.fileURL %></h2>
-            <h2 class="fileInfo">File Upload Date: <%= locals.fileCreatedAt %></h2>
-            <h2 class="fileInfo">File Last Updated: <%= locals.fileLastUpdated %></h2>
+            <h2 class="fileInfo">File Upload Date: <%= new Date(locals.fileCreatedAt).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }) %></h2>
+            <h2 class="fileInfo">File Last Updated: <%= new Date(locals.fileLastUpdated).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }) %></h2>
+
+            <form method="post" class="fileDownloadForm">
+                <button type="submit" class="fileDownloadButton">Download</button>
+            </form>
         </div>
+
+        
     </main>
 </body>
 </html>
