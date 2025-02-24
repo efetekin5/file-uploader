@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const db = require('../prisma/queries');
+const db = require('../db/queries');
 
 function filesAndFoldersCombined(files, folders) {
     const filesWithType = files.map(file => ({

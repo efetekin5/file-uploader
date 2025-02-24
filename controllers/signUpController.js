@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const queries = require('../prisma/queries')
+const queries = require('../db/queries')
 
 const signUpGet = (req, res, next) => {
     res.render('sign-up');
