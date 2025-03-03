@@ -138,8 +138,8 @@
 .signUpLabel,
 .editFileLabel {
     font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
-    margin-top: 2rem;
+    font-size: 1.3rem;
+    margin-top: 1.8rem;
 }
 
 .editFileLabel {
@@ -151,6 +151,7 @@
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
+    margin-top: 0.4rem;
 }
 
 .signUpLink {
@@ -253,19 +254,19 @@
 .gridHeader {
     display: flex;
     margin-bottom: 1rem;
+    padding-right: 5rem;
 }
 
 .gridHeaderSize {
-    width: 16%;
+    width: 18.5%;
 }
 
 .gridHeaderCreated {
-    margin-left: 2rem;
-    width: 17%;
+    width: 33%;
 }
 
 .gridHeaderName {
-    width: 44%;
+    width: 47%;
     padding-left: 0.9rem;
 }
 
@@ -324,7 +325,7 @@
 
 .fileCreatedAt,
 .folderCreatedAt {
-    width: 20%;
+    width: 29%;
     color: #d3d3d3;
     font-family: "Poppins", sans-serif;
     font-size: 1.1rem;
@@ -497,4 +498,280 @@
     padding-left: 1rem;
     padding-right: 1rem;
     margin-top: -2rem;
+}
+
+@media (max-width: 1395px) {
+    .sidebar {
+        width: 20%;
+    }
+
+    .newFolderForm,
+    .newFileForm {
+        width: 40%;
+    }
+
+    .newFileInputLabel,
+    .fileNameSpan {
+        width: 40%;
+    }
+
+    .newFileButton,
+    .newFolderButton {
+        width: 31%;
+    }
+
+    .folderEditForm,
+    .fileEditForm,
+    .loginForm,
+    .signUpForm {
+        width: 40%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .mainLayout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        width: 100%;
+        min-height: 0;
+        justify-content: center;
+        column-gap: 2.3rem;
+        padding-right: 1.2rem;
+        padding-top: 1.5rem;
+    }
+
+    .dashboard {
+        width: 100%;
+    }
+
+    .headerLogo {
+        font-size: 1.5rem;
+    }
+
+    .userIcon {
+        width: 30px;
+    }
+
+    .currentUser,
+    .headerButtonLogout {
+        font-size: 1.1rem;
+    }
+
+    .folderEditFormContainer,
+    .fileEditFormContainer {
+        width: 100%;
+        min-height: 71vh;
+        padding: 1rem;
+        padding-bottom: 3rem;
+    }
+
+    .folderEditForm,
+    .fileEditForm,
+    .loginForm,
+    .signUpForm {
+        width: 60%;
+    }
+
+    .noAccount,
+    .signUpLink {
+        font-size: 1.1rem;
+    }
+
+    .newFileButton,
+    .newFolderButton {
+        width: 45%;
+    }
+
+    .newFolderForm,
+    .newFileForm {
+        width: 50%;
+    }
+
+    .gridHeaderName {
+        width: 37%;
+    }
+
+    .gridHeaderSize {
+        width: 21%;
+    }
+
+    .gridHeaderCreated {
+        width: 35%;
+    }
+
+    .folderName,
+    .fileName {
+        width: 40%;
+    }
+
+    .folderSize,
+    .fileSize {
+        width: 22%;
+    }
+
+    .fileName,
+    .folderName,
+    .fileSize,
+    .folderSize,
+    .fileCreatedAt,
+    .folderCreatedAt {
+        font-size: 0.9rem;
+    }
+
+    .dashboard {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .newFolder,
+    .newFile,
+    .home {
+    font-size: 1.5rem;
+    padding: 0.1rem;
+    padding-left: 0.5rem;
+    }
+
+    .currentUser,
+    .headerButtonLogout {
+        font-size: 1rem;
+    }
+
+    .folderCreatedAt,
+    .fileCreatedAt {
+        width: 38%;
+    }
+
+    .gridItem {
+        padding: 0.3rem;
+    }
+
+    .deleteIcon {
+        padding: 0rem;
+        width: 25px;
+    }
+
+    .editAndDelete {
+        column-gap: 0.7rem;
+        margin-right: 0.5rem;
+    }
+
+    .gridItemContainer {
+        column-gap: 0.5rem;
+    }
+
+    .nav {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    .headerUL {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        column-gap: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .fileInfoContainer  {
+        width: 100%;
+    }
+
+    .fileInfo {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 481px) {
+    .sidebar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newFolder,
+    .newFile,
+    .home {
+        width: 75%;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+    .fileInfo {
+        font-size: 1rem;
+    }
+
+    .loginForm,
+    .signUpForm {
+        width: 85%;
+        padding: 1rem;
+    }
+
+    .noAccount,
+    .signUpLink {
+        font-size: 0.9rem;
+    }
+
+    .gridItemContainer {
+        flex-direction: column;
+    }
+
+    .editAndDelete {
+        justify-content: center;
+        column-gap: 2rem;
+        margin-top: -0.3rem;
+    }
+
+    .grid {
+        row-gap: 1.5rem;
+        
+    }
+
+    .gridItem {
+        width: 97%;
+    }
+
+    .gridHeaderName {
+        width: 37%;
+        font-size: 1.1rem;
+    }
+
+    .gridHeaderSize {
+        width: 20%;
+        font-size: 1.1rem;
+    }
+
+    .gridHeaderCreated {
+        width: 35%;
+        font-size: 1.1rem;
+    }
+
+    .gridHeader {
+        padding-right: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .editIcon {
+        width: 30px;
+    }
+
+    .deleteIcon {
+        width: 23px;
+    }
+
+    .folderSize {
+        width: 20%;
+    }
+
+    .fileName,
+    .folderName,
+    .fileSize,
+    .folderSize,
+    .fileCreatedAt,
+    .folderCreatedAt {
+        font-size: 0.8rem;
+    }
 }
